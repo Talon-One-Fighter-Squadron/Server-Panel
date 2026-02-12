@@ -1,0 +1,105 @@
+
+
+[2026-02-06 19:29:34] Startup - updater built Dec  2 2013 18:43:44
+[2026-02-06 19:29:34] Checking for update on startup
+[2026-02-06 19:29:34] Checking for available update...
+[2026-02-06 19:29:34] Download failed: http error 0
+[2026-02-06 19:29:34] Package file steamcmd_public_all.zip.ea97f8fd711e4ae492274da96e83bf31eb804528 missing or incorrect size
+[2026-02-06 19:29:34] Package file steamcmd_bins_win32.zip.7ae579f513787b332395a86b4515b400c2f57eaa missing or incorrect size
+[2026-02-06 19:29:34] Package file steamcmd_steamservice_win32.zip.27fe69fc971de8c9fe785daa7a934921369d725b missing or incorrect size
+[2026-02-06 19:29:34] Package file steamcmd_steamerrorreporter_win32.zip.e8bd4e7243ba4a8745195d2435b4ed2a9a7d8aa2 missing or incorrect size
+[2026-02-06 19:29:34] Package file steamcmd_siteserverui_win32.zip.4760659039c6d35313324e11ff600d519924b220 missing or incorrect size
+[2026-02-06 19:29:34] Package file steamcmd_win32.zip.ae4a6f47ec93a6d7c6216d3a0638060ffd31dc62 missing or incorrect size
+[2026-02-06 19:29:34] Downloading update (0 of 43,472 KB)...
+[2026-02-06 19:29:35] Error: Download of package (steamcmd_win32) failed after 0 bytes (0).
+[2026-02-06 19:29:35] Error: Download of package (steamcmd_siteserverui_win32) failed after 0 bytes (0).
+[2026-02-06 19:29:35] Error: Download of package (steamcmd_steamerrorreporter_win32) failed after 0 bytes (0).
+[2026-02-06 19:29:35] Error: Download of package (steamcmd_steamservice_win32) failed after 0 bytes (0).
+[2026-02-06 19:29:35] Error: Download of package (steamcmd_bins_win32) failed after 0 bytes (0).
+[2026-02-06 19:29:35] Error: Download of package (steamcmd_public_all) failed after 0 bytes (0).
+[2026-02-06 19:29:35] Package file steamcmd_public_all.zip.ea97f8fd711e4ae492274da96e83bf31eb804528 missing or incorrect size
+[2026-02-06 19:29:35] Package file steamcmd_bins_win32.zip.7ae579f513787b332395a86b4515b400c2f57eaa missing or incorrect size
+[2026-02-06 19:29:35] Package file steamcmd_steamservice_win32.zip.27fe69fc971de8c9fe785daa7a934921369d725b missing or incorrect size
+[2026-02-06 19:29:35] Package file steamcmd_steamerrorreporter_win32.zip.e8bd4e7243ba4a8745195d2435b4ed2a9a7d8aa2 missing or incorrect size
+[2026-02-06 19:29:35] Package file steamcmd_siteserverui_win32.zip.4760659039c6d35313324e11ff600d519924b220 missing or incorrect size
+[2026-02-06 19:29:35] Package file steamcmd_win32.zip.ae4a6f47ec93a6d7c6216d3a0638060ffd31dc62 missing or incorrect size
+[2026-02-06 19:29:35] Downloading update (4,747 of 43,472 KB)...
+[2026-02-06 19:29:35] Downloading update (15,119 of 43,472 KB)...
+[2026-02-06 19:29:35] Downloading update (22,531 of 43,472 KB)...
+[2026-02-06 19:29:36] Downloading update (29,023 of 43,472 KB)...
+[2026-02-06 19:29:36] Downloading update (36,564 of 43,472 KB)...
+[2026-02-06 19:29:36] Downloading update (38,364 of 43,472 KB)...
+[2026-02-06 19:29:36] Downloading update (40,375 of 43,472 KB)...
+[2026-02-06 19:29:37] Downloading update (43,472 of 43,472 KB)...
+[2026-02-06 19:29:37] Download Complete.
+[2026-02-06 19:29:37] uninstalled manifest found in C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd\package\steam_cmd_win32 (1).
+[2026-02-06 19:29:37] Found pending update
+[2026-02-06 19:29:37] Applying update...
+[2026-02-06 19:29:37] Extracting package...
+[2026-02-06 19:29:38] Installing update...
+[2026-02-06 19:29:38] Committing NTFS transaction (0 non-transactional backup files)
+[2026-02-06 19:29:38] Cleaning up...
+[2026-02-06 19:29:38] Update complete, launching...
+[2026-02-06 19:29:38] Shutdown
+
+
+[2026-02-06 19:29:42] Startup - updater built Jan 21 2026 09:12:53
+[2026-02-06 19:29:42] Startup - Steam Client launched with: C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd\steamcmd.exe +force_install_dir "C:\Users\Nicho\OneDrive\Desktop\v451_fix\servers\test panel"  <+51 truncated>
+[2026-02-06 19:29:42] Windows 10.0.26100.0, 0, 2, 768, 1, 101 
+[2026-02-06 19:29:42] Loading cached metrics from disk (C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd\package\steam_cmd_metrics.bin)
+[2026-02-06 19:29:42] Failed to load cached hosts file (File 'update_hosts_cached.vdf' not found), using defaults
+[2026-02-06 19:29:42] Using the following download hosts for Public, Realm steamglobal
+[2026-02-06 19:29:42] 1. https://client-update.steamstatic.com, /, Realm 'steamglobal', weight was 1, source = 'baked in'
+[2026-02-06 19:29:42] Checking for update on startup
+[2026-02-06 19:29:42] Checking for available updates...
+[2026-02-06 19:29:42] Downloading manifest: https://client-update.steamstatic.com/steam_cmd_win64
+[2026-02-06 19:29:42] Manifest download: send request
+[2026-02-06 19:29:42] Manifest download: waiting for download to finish
+[2026-02-06 19:29:42] Manifest download: finished
+[2026-02-06 19:29:42] Download skipped: /steam_cmd_win64 version 1769026246, installed version 1769026246, existing pending version 0
+[2026-02-06 19:29:42] Nothing to do
+[2026-02-06 19:29:42] Verifying installation...
+[2026-02-06 19:29:42] Verifying all executable checksums
+[2026-02-06 19:29:42] Verification complete
+[2026-02-06 19:29:46] Clearing cached metrics (C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd\package\steam_cmd_metrics.bin)
+[2026-02-06 19:29:49] Shutdown
+
+
+[2026-02-06 19:29:50] Startup - updater built Jan 21 2026 09:12:53
+[2026-02-06 19:29:50] Startup - Steam Client launched with: C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd\steamcmd.exe +quit
+[2026-02-06 19:29:50] Windows 10.0.26100.0, 0, 2, 768, 1, 101 
+[2026-02-06 19:29:50] Failed to load cached hosts file (File 'update_hosts_cached.vdf' not found), using defaults
+[2026-02-06 19:29:50] Using the following download hosts for Public, Realm steamglobal
+[2026-02-06 19:29:50] 1. https://client-update.steamstatic.com, /, Realm 'steamglobal', weight was 1, source = 'baked in'
+[2026-02-06 19:29:50] Checking for update on startup
+[2026-02-06 19:29:50] Checking for available updates...
+[2026-02-06 19:29:50] Downloading manifest: https://client-update.steamstatic.com/steam_cmd_win64
+[2026-02-06 19:29:50] Manifest download: send request
+[2026-02-06 19:29:50] Manifest download: waiting for download to finish
+[2026-02-06 19:29:50] Manifest download: finished
+[2026-02-06 19:29:50] Download skipped: /steam_cmd_win64 version 1769026246, installed version 1769026246, existing pending version 0
+[2026-02-06 19:29:50] Nothing to do
+[2026-02-06 19:29:50] Verifying installation...
+[2026-02-06 19:29:50] Verifying all executable checksums
+[2026-02-06 19:29:51] Verification complete
+[2026-02-06 19:29:51] Shutdown
+
+
+[2026-02-06 19:29:51] Startup - updater built Jan 21 2026 09:12:53
+[2026-02-06 19:29:51] Startup - Steam Client launched with: C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd\steamcmd.exe +force_install_dir "C:\Users\Nicho\OneDrive\Desktop\v451_fix\servers\test panel"  <+51 truncated>
+[2026-02-06 19:29:51] Windows 10.0.26100.0, 0, 2, 768, 1, 101 
+[2026-02-06 19:29:51] Failed to load cached hosts file (File 'update_hosts_cached.vdf' not found), using defaults
+[2026-02-06 19:29:51] Using the following download hosts for Public, Realm steamglobal
+[2026-02-06 19:29:51] 1. https://client-update.steamstatic.com, /, Realm 'steamglobal', weight was 1, source = 'baked in'
+[2026-02-06 19:29:51] Checking for update on startup
+[2026-02-06 19:29:51] Checking for available updates...
+[2026-02-06 19:29:51] Downloading manifest: https://client-update.steamstatic.com/steam_cmd_win64
+[2026-02-06 19:29:51] Manifest download: send request
+[2026-02-06 19:29:51] Manifest download: waiting for download to finish
+[2026-02-06 19:29:51] Manifest download: finished
+[2026-02-06 19:29:51] Download skipped: /steam_cmd_win64 version 1769026246, installed version 1769026246, existing pending version 0
+[2026-02-06 19:29:51] Nothing to do
+[2026-02-06 19:29:51] Verifying installation...
+[2026-02-06 19:29:51] Verifying all executable checksums
+[2026-02-06 19:29:51] Verification complete
+[2026-02-06 19:30:06] Shutdown

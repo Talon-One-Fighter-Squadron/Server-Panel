@@ -1,0 +1,58 @@
+
+
+[2026-02-06 19:29:45] Client version: 1769026246
+[2026-02-06 19:29:45] Loaded 0 apps from install folder "c:\users\nicho\onedrive\desktop\v451_fix\servers\test panel\steamapps\appmanifest_*.acf".
+[2026-02-06 19:29:45] Triggered async write of Steam library folders configuration (1 libraries).
+[2026-02-06 19:29:49] Failed installing AppID 3930080 (Missing configuration)
+
+
+[2026-02-06 19:29:53] Client version: 1769026246
+[2026-02-06 19:29:53] Loaded 0 apps from install folder "c:\users\nicho\onedrive\desktop\v451_fix\servers\test panel\steamapps\appmanifest_*.acf".
+[2026-02-06 19:29:53] Triggered async write of Steam library folders configuration (1 libraries).
+[2026-02-06 19:29:54] AppID 3930080 state changed : Update Required,
+[2026-02-06 19:29:54] AppID 3930080 scheduler update : Priority First, not played for 1 seconds, update disabled for 0 seconds
+[2026-02-06 19:29:54] AppID 3930080 state changed : Update Required,Update Queued,
+[2026-02-06 19:29:54] AppID 3930080 scheduler update : Priority First, not played for 1 seconds, update disabled for 0 seconds
+[2026-02-06 19:29:54] AppID 3930080 state changed : Update Required,Update Queued,Update Running,
+[2026-02-06 19:29:54] AppID 3930080 App update changed : Running Update,
+[2026-02-06 19:29:54] AppID 3930080 App update changed : Running Update,Reconfiguring,
+[2026-02-06 19:29:54] Got 30 download sources and 0 caching proxies via ContentServerDirectoryService::BYieldingGetServersForSteamPipe (CellID 65 / Launcher 3)
+[2026-02-06 19:29:54] Moving to source priority class '4'
+[2026-02-06 19:29:54] Created download interface of type 'SteamCache' (7) to host cache12-dfw2.steamcontent.com (cache12-dfw2.steamcontent.com)
+[2026-02-06 19:29:54] Created download interface of type 'SteamCache' (7) to host cache11-dfw2.steamcontent.com (cache11-dfw2.steamcontent.com)
+[2026-02-06 19:29:54] Created download interface of type 'SteamCache' (7) to host cache14-dfw2.steamcontent.com (cache14-dfw2.steamcontent.com)
+[2026-02-06 19:29:54] HTTP/2 available
+[2026-02-06 19:29:54] Created ipv4-only http client
+[2026-02-06 19:29:55] HTTPS (SteamCache,511) - cache12-dfw2.steamcontent.com (162.254.194.26:443 / 162.254.194.26:443, host: cache12-dfw2.steamcontent.com): Negotiated HTTP/2
+[2026-02-06 19:29:55] HTTP/2 (SteamCache,511) - cache12-dfw2.steamcontent.com (162.254.194.26:443 / 162.254.194.26:443, host: cache12-dfw2.steamcontent.com): cache12-dfw2.steamcontent.com/depot/1004/manifest/5612541580377302256/5/1770002145799221114 - received 200 (OK) HTTP response
+[2026-02-06 19:29:56] HTTP/2 (SteamCache,511) - cache12-dfw2.steamcontent.com (162.254.194.26:443 / 162.254.194.26:443, host: cache12-dfw2.steamcontent.com): cache12-dfw2.steamcontent.com/depot/3930082/manifest/282236354154917041/5/11944743480104766972 - received 200 (OK) HTTP response
+[2026-02-06 19:29:56] AppID 3930080 App update changed : Running Update,
+[2026-02-06 19:29:56] AppID 3930080 App update changed : Running Update,Verifying Installed,
+[2026-02-06 19:29:56] AppID 3930080 App update changed : Running Update,
+[2026-02-06 19:29:56] AppID 3930080 App update changed : Running Update,Preallocating,
+[2026-02-06 19:29:56] AppID 3930080 preallocated 63 files (804 MB) 
+[2026-02-06 19:29:56] AppID 3930080 App update changed : Running Update,
+[2026-02-06 19:29:56] AppID 3930080 update started : download 0/537160496, store 0/0, reuse 0/0, delta 0/0, stage 0/851906104 
+[2026-02-06 19:29:56] AppID 3930080 state changed : Update Required,Update Queued,Update Running,Update Started,
+[2026-02-06 19:29:56] AppID 3930080 App update changed : Running Update,Downloading,Staging,
+[2026-02-06 19:29:56] Downloading 66 chunks for depot 1004 (5612541580377302256)
+[2026-02-06 19:29:56] HTTPS (SteamCache,510) - cache11-dfw2.steamcontent.com (162.254.194.10:443 / 162.254.194.10:443, host: cache11-dfw2.steamcontent.com): Negotiated HTTP/2
+[2026-02-06 19:29:57] HTTPS (SteamCache,168) - cache14-dfw2.steamcontent.com (162.254.194.27:443 / 162.254.194.27:443, host: cache14-dfw2.steamcontent.com): Negotiated HTTP/2
+[2026-02-06 19:29:57] Downloading 955 chunks for depot 3930082 (282236354154917041)
+[2026-02-06 19:30:03] AppID 3930080 App update changed : Running Update,
+[2026-02-06 19:30:03] AppID 3930080 App update changed : Running Update,Verifying Staged,
+[2026-02-06 19:30:04] Verified 812 MB in 'C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd', clean bytes tally is now 812 MB
+[2026-02-06 19:30:04] Triggered async write of Steam library folders configuration (1 libraries).
+[2026-02-06 19:30:04] AppID 3930080 App update changed : Running Update,
+[2026-02-06 19:30:04] AppID 3930080 App update changed : Running Update,Committing,
+[2026-02-06 19:30:04] AppID 3930080 starting commit from "c:\users\nicho\onedrive\desktop\v451_fix\servers\test panel\steamapps\downloading\3930080" to "c:\users\nicho\onedrive\desktop\v451_fix\servers\test panel" : 238 updated, 0 moved, 0 deleted files
+[2026-02-06 19:30:04] AppID 3930080 state changed : Fully Installed,Update Queued,Update Running,
+[2026-02-06 19:30:04] AppID 3930080 finished update, 2 mounted depots (BuildID 21774801) : 1004 (5612541580377302256),3930082 (282236354154917041),
+[2026-02-06 19:30:04] AppID 3930080 App update changed : Running Update,
+[2026-02-06 19:30:04] AppID 3930080 App update changed : None
+[2026-02-06 19:30:04] AppID 3930080 state changed : Fully Installed,Update Queued,
+[2026-02-06 19:30:04] AppID 3930080 state changed : Fully Installed,
+[2026-02-06 19:30:04] AppID 3930080 scheduler finished : removed from schedule (result No Error, state 0xc) 
+[2026-02-06 19:30:06] HTTP/2 (SteamCache,168) - cache14-dfw2.steamcontent.com (162.254.194.27:443 / 162.254.194.27:443, host: cache14-dfw2.steamcontent.com): Closing connection
+[2026-02-06 19:30:06] HTTP/2 (SteamCache,510) - cache11-dfw2.steamcontent.com (162.254.194.10:443 / 162.254.194.10:443, host: cache11-dfw2.steamcontent.com): Closing connection
+[2026-02-06 19:30:06] HTTP/2 (SteamCache,511) - cache12-dfw2.steamcontent.com (162.254.194.26:443 / 162.254.194.26:443, host: cache12-dfw2.steamcontent.com): Closing connection
