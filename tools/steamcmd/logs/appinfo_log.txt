@@ -1,0 +1,60 @@
+
+
+[2026-02-06 19:29:41] Client version: 1769026246
+[2026-02-06 19:29:41] ThreadedReadFromDisk: loading appinfo cache from: C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd/appcache/appinfo.vdf
+[2026-02-06 19:29:41] ThreadedReadFromDisk: failed to open file: C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd/appcache/appinfo.vdf
+[2026-02-06 19:29:41] CAppInfoCacheReadFromDiskThread took 0 milliseconds to initialize
+
+
+[2026-02-06 19:29:42] Client version: 1769026246
+[2026-02-06 19:29:42] ThreadedReadFromDisk: loading appinfo cache from: C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd/appcache/appinfo.vdf
+[2026-02-06 19:29:42] ThreadedReadFromDisk: failed to open file: C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd/appcache/appinfo.vdf
+[2026-02-06 19:29:42] CAppInfoCacheReadFromDiskThread took 0 milliseconds to initialize
+[2026-02-06 19:29:45] RequestAppInfoUpdate: AppIDs 7
+[2026-02-06 19:29:45] Change number 0->33702128, apps: 0/0, packages: 0/0
+[2026-02-06 19:29:45] Requesting 1 apps, 1 packages (meta data, 1024 prev attempts, expected 0 KB)
+[2026-02-06 19:29:45] Downloaded 1 apps via HTTP, 15 KB (3 KB compressed)
+[2026-02-06 19:29:45] Requesting 0 apps, 1 packages (full data, 1024 prev attempts, expected 17 KB)
+[2026-02-06 19:29:46] UpdatesJob: finished OK, apps updated 1 (15 KB), packages updated 1 (17 KB)
+[2026-02-06 19:29:46] Requesting 736 apps, 0 packages (meta data, 1024 prev attempts, expected 34 KB)
+[2026-02-06 19:29:46] Requested 92 app access tokens, 24 received, 68 denied
+[2026-02-06 19:29:46] Updated SHAs with 24 new access tokens
+[2026-02-06 19:29:48] Downloaded 169 apps via HTTP, 2229 KB (533 KB compressed)
+[2026-02-06 19:29:48] Requesting 567 apps, 0 packages (full data, 1024 prev attempts, expected 2387 KB)
+[2026-02-06 19:29:48] UpdatesJob: finished OK, apps updated 736 (4642 KB), packages updated 0 (0 KB)
+[2026-02-06 19:29:48] UpdatesJob: apps still needs updates, run again
+[2026-02-06 19:29:48] Requesting 68 apps, 0 packages (meta data, 1024 prev attempts, expected 3 KB)
+[2026-02-06 19:29:48] RequestAppInfoUpdate: AppIDs 3930080
+[2026-02-06 19:29:49] Requested 68 app access tokens, 0 received, 68 denied
+[2026-02-06 19:29:49] UpdatesJob: finished OK, apps updated 0 (0 KB), packages updated 0 (0 KB)
+[2026-02-06 19:29:49] UpdatesJob: apps still needs updates, run again
+[2026-02-06 19:29:49] Requesting 1 apps, 0 packages (meta data, 1024 prev attempts, expected 0 KB)
+[2026-02-06 19:29:49] UpdatesJob: finished OK, apps updated 0 (0 KB), packages updated 0 (0 KB)
+[2026-02-06 19:29:49] UpdatesJob: apps still needs updates, run again
+[2026-02-06 19:29:49] ThreadedWriteToDisk: writing appinfo cache to: C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd/appcache/appinfo.vdf
+[2026-02-06 19:29:49] App cache write succeeded C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd/appcache/appinfo.vdf (737 apps, 2273 KB) in 13 ms
+
+
+[2026-02-06 19:29:51] Client version: 1769026246
+[2026-02-06 19:29:51] ThreadedReadFromDisk: loading appinfo cache from: C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd/appcache/appinfo.vdf
+[2026-02-06 19:29:51] ThreadedReadFromDisk: header version: 0x7564429
+[2026-02-06 19:29:51] ThreadedReadFromDisk: apps updated: 737
+[2026-02-06 19:29:51] CAppInfoCacheReadFromDiskThread took 13 milliseconds to initialize
+
+
+[2026-02-06 19:29:51] Client version: 1769026246
+[2026-02-06 19:29:51] ThreadedReadFromDisk: loading appinfo cache from: C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd/appcache/appinfo.vdf
+[2026-02-06 19:29:51] ThreadedReadFromDisk: header version: 0x7564429
+[2026-02-06 19:29:51] ThreadedReadFromDisk: apps updated: 737
+[2026-02-06 19:29:51] CAppInfoCacheReadFromDiskThread took 14 milliseconds to initialize
+[2026-02-06 19:29:53] RequestAppInfoUpdate: AppIDs 7
+[2026-02-06 19:29:53] Change number 33702128->33702129, apps: 0/1, packages: 0/0
+[2026-02-06 19:29:53] Requesting 69 apps, 0 packages (meta data, 1024 prev attempts, expected 3 KB)
+[2026-02-06 19:29:53] Requested 68 app access tokens, 0 received, 68 denied
+[2026-02-06 19:29:53] UpdatesJob: finished OK, apps updated 0 (0 KB), packages updated 0 (0 KB)
+[2026-02-06 19:29:53] RequestAppInfoUpdate: AppIDs 3930080
+[2026-02-06 19:29:53] Requesting 1 apps, 0 packages (meta data, 1024 prev attempts, expected 0 KB)
+[2026-02-06 19:29:54] Requesting 1 apps, 0 packages (full data, 1024 prev attempts, expected 2 KB)
+[2026-02-06 19:29:54] UpdatesJob: finished OK, apps updated 1 (2 KB), packages updated 0 (0 KB)
+[2026-02-06 19:29:59] ThreadedWriteToDisk: writing appinfo cache to: C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd/appcache/appinfo.vdf
+[2026-02-06 19:29:59] App cache write succeeded C:\Users\Nicho\OneDrive\Desktop\v451_fix\tools\steamcmd/appcache/appinfo.vdf (738 apps, 2274 KB) in 23 ms

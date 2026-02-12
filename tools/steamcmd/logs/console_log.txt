@@ -1,0 +1,50 @@
+
+
+[2026-02-06 19:29:41] Client version: 1769026246
+[2026-02-06 19:29:41] Loading Steam API...
+[2026-02-06 19:29:41] OK
+[2026-02-06 19:29:42] Unloading Steam API...
+[2026-02-06 19:29:42] OK
+
+
+[2026-02-06 19:29:42] Client version: 1769026246
+[2026-02-06 19:29:42] Loading Steam API...
+[2026-02-06 19:29:42] OK
+[2026-02-06 19:29:42] 
+Connecting anonymously to Steam Public...
+[2026-02-06 19:29:45] OK
+[2026-02-06 19:29:45] Waiting for client config...
+[2026-02-06 19:29:46] OK
+[2026-02-06 19:29:46] Waiting for user info...
+[2026-02-06 19:29:48] OK
+[2026-02-06 19:29:49] ERROR! Failed to install app '3930080' (Missing configuration)
+[2026-02-06 19:29:49] Unloading Steam API...
+[2026-02-06 19:29:49] OK
+
+
+[2026-02-06 19:29:51] Client version: 1769026246
+[2026-02-06 19:29:51] Loading Steam API...
+[2026-02-06 19:29:51] OK
+[2026-02-06 19:29:51] Unloading Steam API...
+[2026-02-06 19:29:51] OK
+
+
+[2026-02-06 19:29:51] Client version: 1769026246
+[2026-02-06 19:29:51] Loading Steam API...
+[2026-02-06 19:29:51] OK
+[2026-02-06 19:29:52] 
+Connecting anonymously to Steam Public...
+[2026-02-06 19:29:53] OK
+[2026-02-06 19:29:53] Waiting for client config...
+[2026-02-06 19:29:53] OK
+[2026-02-06 19:29:53] Waiting for user info...
+[2026-02-06 19:29:53] OK
+[2026-02-06 19:29:56]  Update state (0x61) downloading, progress: 0.00 (0 / 851906104)
+[2026-02-06 19:29:58]  Update state (0x61) downloading, progress: 18.96 (161507674 / 851906104)
+[2026-02-06 19:30:00]  Update state (0x61) downloading, progress: 91.12 (776233392 / 851906104)
+[2026-02-06 19:30:02]  Update state (0x61) downloading, progress: 99.87 (850835592 / 851906104)
+[2026-02-06 19:30:04]  Update state (0x81) verifying update, progress: 68.97 (587589085 / 851906104)
+[2026-02-06 19:30:06]  Update state (0x0) unknown, progress: 0.00 (0 / 0)
+[2026-02-06 19:30:06] Success! App '3930080' fully installed.
+[2026-02-06 19:30:06] Unloading Steam API...
+[2026-02-06 19:30:06] OK

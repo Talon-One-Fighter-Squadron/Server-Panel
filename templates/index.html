@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nuclear Option • Server Control Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="bg"></div>
+
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <img id="brand-logo-img" alt="Logo" style="display:none;" />
+          <svg viewBox="0 0 64 64" fill="none">
+            <path d="M31.7 10c-5.6 0-10.2 4.6-10.2 10.2v4.8c0 5.6 4.6 10.2 10.2 10.2s10.2-4.6 10.2-10.2v-4.8C41.9 14.6 37.3 10 31.7 10Z" stroke="currentColor" stroke-width="3" opacity=".9"/>
+            <path d="M20 35c-7 3-9 12-4 17m28-17c7 3 9 12 4 17M16 26c-6-2-10-8-8-14m40 14c6-2 10-8 8-14" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Nuclear Option</div>
+          <div class="brand-sub">Server Panel</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-page="dashboard">
+          <span class="dot"></span> Dashboard
+        </button>
+        <button class="nav-item" data-page="control">
+          <span class="dot"></span> Commands
+        </button>
+        <button class="nav-item" data-page="bans">
+          <span class="dot"></span> Bans & Kicks
+        </button>
+        <button class="nav-item" data-page="ports">
+          <span class="dot"></span> Ports
+        </button>
+        <button class="nav-item" data-page="manage">
+          <span class="dot"></span> Server Deployment
+        </button>
+        <button class="nav-item" data-page="server">
+          <span class="dot"></span> Server Settings
+        </button>
+        <button class="nav-item" data-page="users">
+          <span class="dot"></span> Panel Users
+        </button>
+        <button class="nav-item" data-page="cluster">
+          <span class="dot"></span> Cluster Setup
+        </button>
+        <button class="nav-item" data-page="noblackbox">
+          <span class="dot"></span> NoBlackBox
+        </button>
+        <button class="nav-item" data-page="discord">
+          <span class="dot"></span> Discord Bot
+        </button>
+        <button class="nav-item" data-page="gallery" type="button" onclick="setActivePage(\'gallery\')">
+            <span class="dot"></span>
+            Gallery
+          </button>
+
+          <button class="nav-item" data-page="about">
+          <span class="dot"></span> About
+        </button>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="select">
+          <label>Servers</label>
+          <div id="server-selector" class="pills pills-side"></div>
+          <div id="server-selector-hint" class="muted small" style="margin-top:6px;"></div>
+        </div>
+        <div class="hint">
+          Logged in as <span id="current-user" class="mono"></span> • <a class="link" href="/logout">Logout</a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="title">
+          <h1 id="page-title">Dashboard</h1>
+          <p id="page-subtitle">Quick actions + live responses</p>
+        </div>
+        <div class="status">
+          <span class="pill" id="pill">Ready</span>
+        </div>
+      </header>
+
+      <section class="grid">
+        <!-- Left: page content -->
+        <div class="col">
+          <!-- Dashboard -->
+          <div class="page show" id="page-dashboard">
+            <div class="row">
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Quick actions</div>
+                    <div class="card-s">Common one-click commands</div>
+                  </div>
+                </div>
+                <div class="btns">
+                  <button class="btn danger" id="update-server-btn">Update Server</button>
+                  <button class="btn" id="start-server-btn">Start Server</button>
+                  <button class="btn ghost" id="stop-server-btn">Stop Server</button>
+                  <button class="btn ghost" id="restart-server-btn">Restart Server</button>
+                  <button class="btn ghost" data-command="get-mission-time">Get Mission Time</button>
+                  <button class="btn ghost" data-command="set-time-remaining" data-time="5">Next Mission</button>
+                  <button class="btn ghost" data-command="get-mission">Get Mission</button>
+                  <button class="btn ghost" data-command="get-player-list">Get Player List</button>
+                
+</div>
+              </div>
+
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Server access</div>
+                    <div class="card-s">Set password and mission rotation for the selected server.</div>
+                  </div>
+                </div>
+
+                <!-- Inline notice for changes that require a restart -->
+                <div id="server-settings-notice" class="notice" style="display:none; margin: 10px 12px 0 12px;"></div>
+
+                <div class="form">
+                  <div class="field">
+                    <label>Server Password</label>
+                    <input id="server-password" type="text" placeholder="Leave blank for no password">
+                    <div id="password-status" class="help"></div>
+                  </div>
+                  <div class="btns">
+                    <button class="btn primary" id="password-save-btn" type="button">Save Password</button>
+                  </div>
+
+                  <div class="hr"></div>
+
+                  <div class="field">
+  <label>Mission Slot 1</label>
+  <div class="row">
+    <select id="mission1-group" class="grow">
+      <option value="BuiltIn">Built-in</option>
+      <option value="User">User missions (from panel missions folder)</option>
+    </select>
+    <select id="mission1-name" class="grow">
+      <option value="">None</option>
+    </select>
+  </div>
+</div>
+
+<div class="field">
+  <label>Mission Slot 2</label>
+  <div class="row">
+    <select id="mission2-group" class="grow">
+      <option value="BuiltIn">Built-in</option>
+      <option value="User">User missions (from panel missions folder)</option>
+    </select>
+    <select id="mission2-name" class="grow">
+      <option value="">None</option>
+    </select>
+  </div>
+  <div class="help" id="mission-help"></div>
+</div>
+
+<div class="btns">
+  <button class="btn primary" id="mission-slots-save-btn" type="button">Save Missions</button>
+</div>
+                </div>
+              </div>
+
+              
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Sync Workshop Maps</div>
+                    <div class="card-s">Copies your subscribed Workshop missions from Steam into this panel's missions folder.</div>
+                  </div>
+                </div>
+                <div class="form">
+                  <div class="btns">
+                    <button class="btn primary" id="sync-workshop-btn" type="button">Sync Workshop Maps</button>
+                  </div>
+                  <div class="hint" id="sync-workshop-status" style="margin-top:10px;">
+                    Tip: Subscribe to missions in Steam first, then click Sync.
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Reload config</div>
+                    <div class="card-s">Path optional (empty uses server default)</div>
+                  </div>
+                </div>
+                <form class="form" id="reload-config-form">
+                  <div class="field">
+                    <label>Config path (optional)</label>
+                    <input type="text" name="path" placeholder="/path/to/server/config.json">
+                  </div>
+                  <button class="btn primary" type="submit">Reload</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Commands -->
+          <div class="page" id="page-control">
+            <div class="row">
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Send chat message</div>
+                    <div class="card-s">Displays in in-game chat</div>
+                  </div>
+                </div>
+                <form class="form" id="send-chat-message-form">
+                  <div class="field">
+                    <label>Message</label>
+                    <input type="text" name="message" placeholder="Message to players…" required>
+                  </div>
+                  <button class="btn primary" type="submit">Send</button>
+                </form>
+              </div>
+
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Set time remaining</div>
+                    <div class="card-s">Seconds remaining in the current mission</div>
+                  </div>
+                </div>
+                <form class="form" id="set-time-remaining-form">
+                  <div class="field">
+                    <label>Seconds</label>
+                    <input type="number" name="time" placeholder="900" required>
+                  </div>
+                  <button class="btn primary" type="submit">Set</button>
+                </form>
+              </div>
+
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Set next mission</div>
+                    <div class="card-s">Group, mission name, max time</div>
+                  </div>
+                </div>
+                <form class="form" id="set-next-mission-form">
+                  <div class="field">
+                    <label>Group</label>
+                    <input type="text" name="group" placeholder="Builtin" required>
+                  </div>
+                  <div class="field">
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="mission_name" required>
+                  </div>
+                  <div class="field">
+                    <label>Max time (seconds)</label>
+                    <input type="number" name="max_time" placeholder="1800" required>
+                  </div>
+                  <button class="btn primary" type="submit">Set</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bans -->
+          <div class="page" id="page-bans">
+            <div class="row">
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Banning & kicking</div>
+                    <div class="card-s">SteamID actions</div>
+                  </div>
+                </div>
+                <div class="btns">
+                  <button class="btn ghost" data-command="clear-kicked-players">Clear Kicked Players</button>
+                  <button class="btn ghost" data-command="banlist-reload">Reload Banlist</button>
+                  <button class="btn ghost" data-command="banlist-clear">Clear Banlist</button>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Kick player</div>
+                    <div class="card-s">Requires SteamID</div>
+                  </div>
+                </div>
+                <form class="form" id="kick-player-form">
+                  <div class="field">
+                    <label>Steam ID</label>
+                    <input type="text" name="steam_id" placeholder="7656119…" required>
+                  </div>
+                  <button class="btn danger" type="submit">Kick</button>
+                </form>
+              </div>
+
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Unkick player</div>
+                    <div class="card-s">Removes from kicked list</div>
+                  </div>
+                </div>
+                <form class="form" id="unkick-player-form">
+                  <div class="field">
+                    <label>Steam ID</label>
+                    <input type="text" name="steam_id" placeholder="7656119…" required>
+                  </div>
+                  <button class="btn good" type="submit">Unkick</button>
+                </form>
+              </div>
+
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Ban player</div>
+                    <div class="card-s">Optional reason</div>
+                  </div>
+                </div>
+                <form class="form" id="ban-player-form">
+                  <div class="field">
+                    <label>Steam ID</label>
+                    <input type="text" name="steam_id" placeholder="7656119…" required>
+                  </div>
+                  <div class="field">
+                    <label>Reason (optional)</label>
+                    <input type="text" name="reason" placeholder="Griefing">
+                  </div>
+                  <button class="btn danger" type="submit">Ban</button>
+                </form>
+              </div>
+
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Unban player</div>
+                    <div class="card-s">Removes from ban list</div>
+                  </div>
+                </div>
+                <form class="form" id="unban-player-form">
+                  <div class="field">
+                    <label>Steam ID</label>
+                    <input type="text" name="steam_id" placeholder="7656119…" required>
+                  </div>
+                  <button class="btn warn" type="submit">Unban</button>
+                </form>
+              </div>
+
+              <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-h" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+                  <div>
+                    <div class="card-t">Players</div>
+                    <div class="card-s">Click a player to auto-fill SteamID fields for Kick/Ban.</div>
+                  </div>
+                  <div class="btns" style="margin:0;">
+                    <button class="btn ghost" id="bans-refresh-players">Refresh</button>
+                  </div>
+                </div>
+                <div id="bans-player-status" class="muted small" style="margin-bottom:10px;"></div>
+                <div id="bans-player-pills" class="player-pill-wrap"></div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <!-- Server Deployment -->
+          <div class="page" id="page-manage">
+            <div class="row">
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Create / Manage Server Instances</div>
+                    <div class="card-s">Create multiple Nuclear Option server installs, and switch which one all tabs edit.</div>
+                  </div>
+                </div>
+
+                <div class="grid2">
+                  <div class="field">
+                    <label>Server Name</label>
+                    <input id="sm-name" placeholder="e.g. The Underground #1" />
+                  </div>
+                  <div class="field">
+                    <label>Remote Commands Port</label>
+                    <input id="sm-remote-port" type="number" placeholder="7779" />
+                  </div>
+                  <div class="field">
+                    <label>Game Port (optional)</label>
+                    <input id="sm-game-port" type="number" placeholder="(leave blank)" />
+                  </div>
+                  <div class="field">
+                    <label>Query Port (optional)</label>
+                    <input id="sm-query-port" type="number" placeholder="(leave blank)" />
+                  </div>
+
+<div class="field">
+  <label>Install Node (cluster)</label>
+  <select id="sm-node"></select>
+  <div class="muted small" id="sm-node-note" style="margin-top:6px;">If cluster is enabled and you're the coordinator, you can pick which node will host the server install.</div>
+</div>
+                  <div class="field" style="grid-column: 1 / -1;">
+                    <label>Install Directory (optional)</label>
+                    <input id="sm-install-dir" placeholder="Default: ./servers/<name>" />
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <button class="btn" id="sm-create">Create Server</button>
+                  <button class="btn ghost" id="sm-refresh">Refresh List</button>
+                </div>
+
+                <div class="sep"></div>
+
+                <div class="pill-area">
+                  <div class="muted">Your servers:</div>
+                  <div id="server-pills" class="pills"></div>
+                  <div class="muted small" style="margin-top:8px;">Click a server pill to select it. All other tabs will edit the selected server.</div>
+                </div>
+
+                <div class="sep"></div>
+
+                <div class="actions">
+                  <button class="btn danger" id="sm-delete">Delete Selected Server</button>
+                  <label class="chk">
+                    <input type="checkbox" id="sm-delete-files" />
+                    Also delete server files on disk
+                  </label>
+                </div>
+
+                <div id="sm-status" class="status"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Server Settings -->
+          <div class="page" id="page-server">
+            <div class="row">
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Startup settings</div>
+                    <div class="card-s">Edits <code>RunServer.bat</code> (FPS + Remote Commands Port). Changing either requires a server restart.</div>
+                  </div>
+                </div>
+
+                <div class="form">
+                  <div class="field">
+                    <label>FPS limit (<code>-limitframerate</code>)</label>
+                    <input id="startup-fps" type="number" min="1" max="1000" placeholder="60">
+                  </div>
+                  <div class="field">
+                    <label>Max Players (<code>MaxPlayers</code>)</label>
+                    <input id="startup-max-players" type="number" min="1" max="256" placeholder="16">
+                  </div>
+                  <div class="field">
+                    <label>Remote Commands Port (<code>-ServerRemoteCommands</code>)</label>
+                    <input id="startup-remote-port" type="number" min="1" max="65535" placeholder="7779">
+                  </div>
+
+                  
+                  <div class="btns">
+                    <button class="btn ghost" id="startup-load-btn" type="button">Load</button>
+                    <button class="btn primary" id="startup-save-btn" type="button">Save</button>
+                  </div>
+
+                  <div class="hr"></div>
+
+
+                  <div class="field">
+                    <label>MOTD (Message of the Day)</label>
+                    <textarea class="textarea" id="motd-text" rows="3" placeholder="Optional message to broadcast when the server starts..."></textarea>
+                    <div class="hint">Uses the existing <b>Send Message</b> remote command. If set, it will send once when the server starts. Optionally repeats every X minutes while the server is running.</div>
+                  </div>
+                  <div class="field">
+                    <label>Repeat every (minutes)</label>
+                    <input id="motd-repeat" type="number" min="0" max="100000" placeholder="0">
+                    <div class="hint">Set to <b>0</b> (or leave blank) to only send once on start.</div>
+                  </div>
+                  <div class="btns">
+                    <button class="btn primary" id="motd-save-btn" type="button">Save MOTD</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Dedicated server config</div>
+                    <div class="card-s">Edits <code>DedicatedServerConfig.json</code>. Save writes directly to file (JSON must be valid).</div>
+                  </div>
+                </div>
+
+                <div class="form">
+                  <div class="field">
+                    <label>DedicatedServerConfig.json</label>
+                    <textarea class="textarea" id="dedicated-config-text" spellcheck="false" placeholder='{"ServerName":"Nuclear Option Server"}'></textarea>
+                  </div>
+                  <div class="btns">
+                    <button class="btn ghost" id="dedicated-load-btn" type="button">Load</button>
+                    <button class="btn primary" id="dedicated-save-btn" type="button">Save</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ports -->
+          <div class="page" id="page-ports">
+            <div class="card">
+              <div class="card-h">
+                <div>
+                  <div class="card-t">Ports</div>
+                  <div class="card-s">Edit each server's <b>Game Port</b> and <b>Query Port</b>. Works for both local and remote (cluster) servers.</div>
+                </div>
+              </div>
+
+              <div class="table-wrap">
+                <table class="table" id="ports-table">
+                  <thead>
+                    <tr>
+                      <th style="width:50%;">Server Name</th>
+                      <th style="width:20%;">Game Port</th>
+                      <th style="width:20%;">Query Port</th>
+                      <th style="width:10%;"></th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+
+              <div class="btns">
+                <button class="btn ghost" id="refresh-ports">Refresh</button>
+                <button class="btn primary" id="save-ports">Save Changes</button>
+                <button class="btn danger" id="cleanup-firewall" title="Removes stale Windows Firewall rules created by the panel">Clear Firewall Rules</button>
+              </div>
+
+              <div class="hint" style="margin-top:10px;">
+                Tip: Remote Commands Port is managed in <b>Server Settings</b>. This page is only for Game/Query ports.
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Panel Users -->
+          <div class="page" id="page-users">
+            <div class="row">
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Panel Users</div>
+                    <div class="card-s">Create moderator logins, review login attempts, and manage IP blocks.</div>
+                  </div>
+                </div>
+
+                <div id="users-admin-only" class="notice notice-warn" style="display:none; margin: 10px 12px 0 12px;">
+                  Admin access required.
+                </div>
+
+                <div class="form" id="users-panel" style="display:none;">
+                  <div class="field">
+                    <label>Create user</label>
+                    <div class="row">
+                      <input id="new-user-name" class="grow" placeholder="username (3+ chars)" />
+                      <input id="new-user-pass" class="grow" type="password" placeholder="password (6+ chars)" />
+                      <select id="new-user-role" class="grow">
+                        <option value="mod">Moderator</option>
+                        <option value="admin">Admin</option>
+                      </select>
+                      <button class="btn primary" id="create-user-btn" type="button">Create</button>
+                    </div>
+                    <div class="help">Tip: share credentials with trusted moderators only.</div>
+                  </div>
+
+                  <div class="hr"></div>
+
+                  <div class="field">
+                    <label>Existing users</label>
+                    <div id="users-list" class="list"></div>
+                  </div>
+
+                  <div class="hr"></div>
+
+                  <div class="field">
+                    <label>Recent login attempts (rolling)</label>
+                    <div id="login-attempts" class="list"></div>
+                  </div>
+
+                  <div class="hr"></div>
+
+                  <div class="field">
+                    <label>Blocked IPs</label>
+                    <div id="blocked-ips" class="list"></div>
+                  </div>
+
+                  <div class="hr"></div>
+
+                  <div class="field">
+                    <label>Audit logs (localhost only)</label>
+                    <div class="row">
+                      <button class="btn ghost" id="audit-view-btn" type="button">Review Audit Logs</button>
+                      <button class="btn danger" id="audit-clear-btn" type="button">Delete Audit Logs</button>
+                      <div class="help" id="audit-localhint" style="margin-left:10px;"></div>
+                    </div>
+                    <pre id="audit-output" class="code" style="margin-top:10px; max-height:260px; overflow:auto;"></pre>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Fail2Ban rules</div>
+                    <div class="card-s">Automatic IP blocking for repeated failed logins.</div>
+                  </div>
+                </div>
+                <div class="pad">
+                  <ul class="bullets">
+                    <li>Every login attempt is logged (IP + username + success/fail).</li>
+                    <li>After <b>3 failed</b> attempts (within the last hour), the IP is blocked.</li>
+                    <li>Localhost (127.0.0.1) is never blocked.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="page" id="page-cluster">
+            <div class="row">
+              <div class="card">
+                <div class="card-h">
+                  <div>
+                    <div class="card-t">Cluster Setup</div>
+                    <div class="card-s">Create or join a LAN cluster. The node that creates the cluster is the authority.</div>
+                  </div>
+                </div>
+
+                <div class="form">
+                  <div class="field">
+                    <label>Current status</label>
+                    <div id="cluster-status" class="notice" style="margin-top:6px; display:none;"></div>
+                  </div>
+
+                  <div class="hr"></div>
+
+                  <div class="field">
+                    <label>Create cluster</label>
+                    <div class="row">
+                      <input id="cluster-create-name" class="grow" placeholder="Cluster name" />
+                      <label class="row" style="align-items:center; gap:8px; margin:0;">
+                        <input id="cluster-create-broadcast" type="checkbox" checked />
+                        <span class="muted">Broadcast on LAN</span>
+                      </label>
+                      <button class="btn primary" id="cluster-create-btn" type="button">Create</button>
+                    </div>
+                    <div class="help" id="cluster-create-secret" style="margin-top:8px;"></div>
+                  </div>
+
+                  <div class="hr"></div>
+
+                  <div class="field">
+                    <label>Available clusters on LAN</label>
+                    <div class="row">
+                      <button class="btn ghost" id="cluster-refresh-btn" type="button">Refresh</button>
+                    </div>
+                    <div id="cluster-discovery-list" class="list" style="margin-top:10px;"></div>
+                    <div class="help">Members can request to join. The coordinator must approve within 5 minutes.</div>
+                  </div>
+
+                  <div class="hr"></div>
+
+                  <div class="field" id="cluster-join-requests-wrap" style="display:none;">
+                    <label>Pending join requests</label>
+                    <div id="cluster-join-requests" class="list" style="margin-top:10px;"></div>
+                    <div class="help">Approve within 5 minutes or the request expires.</div>
+                  </div>
+
+                  <div class="hr"></div>
+
+                  <div class="field">
+                    <label>Join cluster (manual)</label>
+                    <div class="row">
+                      <input id="cluster-join-ip" class="grow" placeholder="Coordinator IP (e.g., 192.168.1.10)" />
+                      <input id="cluster-join-port" class="grow" placeholder="Port (default 5000)" value="5000" />
+                      <input id="cluster-join-secret" class="grow" placeholder="Join secret" />
+                      <button class="btn primary" id="cluster-join-btn" type="button">Join</button>
+                    </div>
+                    <div class="help">Private clusters won’t appear in discovery. Use manual join.</div>
+                  </div>
+
+                  <div class="hr"></div>
+
+                  <div class="field">
+                    <label>Cluster members</label>
+                    <div id="cluster-members" class="list"></div>
+                  </div>
+
+
+                  <div class="field">
+                    <label>Cluster actions</label>
+                    <div class="row" style="flex-wrap:wrap;">
+                      <button class="btn warn" id="cluster-leave-btn" type="button">Leave cluster (clean)</button>
+                      <button class="btn danger" id="cluster-disband-btn" type="button">Disband cluster (clean)</button>
+                      <div class="help">Leave is for members. Disband is for the coordinator. If the coordinator is unrecoverable, use Break from cluster.</div>
+                    </div>
+                  </div>
+
+                  <div class="hr"></div>
+
+                  <div class="field">
+                    <label>Failsafe</label>
+                    <div class="row">
+                      <button class="btn danger" id="cluster-break-btn" type="button">Break from cluster</button>
+                      <div class="help">Use this if the cluster becomes unrecoverable. This node will leave locally without contacting the coordinator.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="page" id="page-gallery">
+            <div class="card">
+              <div class="card-h">
+                <div>
+                  <div class="card-t">Gallery</div>
+                  <div class="card-s">Browse NOBlackBox recordings for any server (local or remote).</div>
+                </div>
+                <button class="btn" id="gallery-refresh" type="button">Refresh</button>
+              </div>
+
+              <div class="field">
+                <label>Servers</label>
+                <div id="gallery-servers" class="pills" style="margin-top:10px; flex-wrap:wrap;"></div>
+                <div id="gallery-status" class="muted small" style="margin-top:8px;"></div>
+              </div>
+
+              <div class="hr"></div>
+
+              <div class="field">
+                <label>Recordings</label>
+                <div id="gallery-files" class="list" style="margin-top:10px;"></div>
+                <div class="help">Click <b>View in program</b> to open the .acmi in Tacview (or your default viewer). For remote servers, the panel will fetch it first.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="page" id="page-about">
+            <div class="card">
+              <div class="card-h">
+                <div>
+                  <div class="card-t">What this panel does</div>
+                  <div class="card-s">It sends TCP remote-commands to the dedicated server.</div>
+                </div>
+              </div>
+              <div class="mono">
+                <p><b>Protocol:</b> length-prefixed JSON request → response header (status, length) → JSON body.</p>
+                <p><b>Commands implemented:</b> update-ready, send-chat-message, reload-config, get-mission-time, get-mission, get-player-list, set-time-remaining, set-next-mission, kick-player, unkick-player, clear-kicked-players, banlist-reload, banlist-add, banlist-remove, banlist-clear.</p>
+                <p><b>Security:</b> HTTP Basic Auth. For public hosting, put behind a reverse proxy with HTTPS.</p>
+              </div>
+            
+            <div class="card" style="margin-top:14px;">
+              <div class="card-h">
+                <div>
+                  <div class="card-t">Branding</div>
+                  <div class="card-s">Customize accent color and logo for this panel.</div>
+                </div>
+              </div>
+
+              <div class="grid-2">
+                <div class="field">
+                  <label>Panel accent color</label>
+                  <input id="branding-accent" type="color" value="#6c63ff" style="height:42px; padding:6px 10px;">
+                </div>
+
+                <div class="field" style="display:flex; align-items:flex-end; gap:10px;">
+                  <button class="btn" id="branding-save-color">Save Color</button>
+                  <div class="muted small">Applies instantly.</div>
+                </div>
+
+                <div class="field">
+                  <label>Logo image <span class="muted small">16:9 is fine — it will be center-cropped.</span></label>
+                  <input id="branding-logo-file" type="file" accept="image/*">
+                  <div class="muted small" style="margin-top:6px;">Logo resolution: <b>42×42</b> px (square).</div>
+                </div>
+
+                <div class="field" style="display:flex; align-items:flex-end; gap:10px;">
+                  <button class="btn" id="branding-upload-logo">Upload Logo</button>
+                  <button class="btn btn-ghost" id="branding-clear-logo">Reset</button>
+                </div>
+              </div>
+
+              <div id="branding-status" class="muted small" style="margin-top:10px;"></div>
+            </div>
+
+</div>
+          </div>
+        </div>
+
+        <!-- Right: response / activity -->
+        <div class="col col-right">
+          <div class="card">
+            <div class="card-h">
+              <div>
+                <div class="card-t">Server response</div>
+                <div class="card-s" id="cmd-meta">Awaiting command…</div>
+              </div>
+              <button class="btn tiny" id="copy-btn" title="Copy response">Copy</button>
+            </div>
+            <pre class="response" id="response-area">Awaiting command…</pre>
+          </div>
+
+          <div class="card">
+            <div class="card-h">
+              <div>
+                <div class="card-t">Tips</div>
+                <div class="card-s">Multiple servers? Add ports in the <b>Ports</b> tab</div>
+              </div>
+            </div>
+            <ul class="tips">
+              <li>Run this panel on the same machine as the server (uses <code>127.0.0.1</code>).</li>
+              <li>Put it behind Nginx/Caddy for HTTPS.</li>
+              <li>Change the default password immediately.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- NOBlackBox -->
+      <section class="page" id="page-noblackbox" data-page="noblackbox">
+        <div class="card">
+          <div class="nobb-row">
+            <div>
+              <h2>NoBlackBox</h2>
+              <p class="muted">Install/manage the NOBlackBox Tacview recorder plugin for the selected server.</p>
+
+              <div style="margin-top:12px;">
+                <label class="small muted">Select a server</label>
+                <select class="in" id="nobb-server-select"></select>
+              </div>
+<div class="hrow" style="margin-top:12px;">
+                <button class="btn" id="nobb-install-btn">Install NOBlackBox</button>
+                <button class="btn danger" id="nobb-uninstall-btn">Uninstall NOBlackBox</button>
+              </div>
+
+              <pre id="nobb-progress" class="mono" style="margin-top:10px; min-height:54px;"></pre>
+
+              <div class="hr" style="margin:16px 0;"></div>
+
+              <div class="hrow">
+                <div style="flex:1; min-width:280px;">
+                  <label class="small muted">Recording Path (accepts quoted/unquoted)</label>
+                  <input class="in" id="nobb-outputpath" placeholder='C:/Users/Public/Documents/NuclearOption/Replays/' />
+                  <div class="hrow" style="margin-top:8px;">
+                    <button class="btn" id="nobb-apply-path-btn">Apply File Path</button>
+                  </div>
+                  <div class="muted small" style="margin-top:8px;">
+                    For remote servers, paste the path you want the node to use (it will be stored without quotes).
+                  </div>
+                </div>
+              </div>
+
+              <div class="hr" style="margin:16px 0;"></div>
+
+              <div class="hrow" style="gap:12px;">
+                <button class="btn primary" id="nobb-save-btn">Save NoBlackBox Settings</button>
+                <div style="margin-top:10px;">
+                  <a class="btn ghost" href="https://www.tacview.net/download/latest/en/" target="_blank" rel="noopener noreferrer">Install Tacview</a>
+                  <div class="muted small" style="margin-top:6px;">Needed to review footage.</div>
+                </div>
+                <button class="btn" id="nobb-reload-btn">Reload</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="grid2">
+                <div class="row" style="align-items:center; gap:10px;">
+                  <input type="checkbox" id="nobb-autostart" />
+                  <label for="nobb-autostart" class="small muted">AutoStartRecording</label>
+                </div>
+                <div class="row" style="align-items:center; gap:10px;">
+                  <input type="checkbox" id="nobb-record-ejected" />
+                  <label for="nobb-record-ejected" class="small muted">RecordEjectedPilots</label>
+                </div>
+                <div class="row" style="align-items:center; gap:10px;">
+                  <input type="checkbox" id="nobb-destruction" />
+                  <label for="nobb-destruction" class="small muted">DestructionEvents</label>
+                </div>
+                <div class="row" style="align-items:center; gap:10px;">
+                  <input type="checkbox" id="nobb-use-mission-time" />
+                  <label for="nobb-use-mission-time" class="small muted">UseMissionTime</label>
+                </div>
+                <div class="row" style="align-items:center; gap:10px;">
+                  <input type="checkbox" id="nobb-record-steamid" />
+                  <label for="nobb-record-steamid" class="small muted">RecordSteamID</label>
+                </div>
+                <div class="row" style="align-items:center; gap:10px;">
+                  <input type="checkbox" id="nobb-record-speed" />
+                  <label for="nobb-record-speed" class="small muted">RecordSpeed</label>
+                </div>
+                <div class="row" style="align-items:center; gap:10px;">
+                  <input type="checkbox" id="nobb-record-aoa" />
+                  <label for="nobb-record-aoa" class="small muted">RecordAOA</label>
+                </div>
+                <div class="row" style="align-items:center; gap:10px;">
+                  <input type="checkbox" id="nobb-record-agl" />
+                  <label for="nobb-record-agl" class="small muted">RecordAGL</label>
+                </div>
+                <div class="row" style="align-items:center; gap:10px;">
+                  <input type="checkbox" id="nobb-record-radar" />
+                  <label for="nobb-record-radar" class="small muted">RecordRadarMode</label>
+                </div>
+                <div class="row" style="align-items:center; gap:10px;">
+                  <input type="checkbox" id="nobb-record-gear" />
+                  <label for="nobb-record-gear" class="small muted">RecordLandingGear</label>
+                </div>
+                <div class="row" style="align-items:center; gap:10px;">
+                  <input type="checkbox" id="nobb-record-head" />
+                  <label for="nobb-record-head" class="small muted">RecordPilotHead</label>
+                </div>
+                <div class="row" style="align-items:center; gap:10px;">
+                  <input type="checkbox" id="nobb-record-extra" />
+                  <label for="nobb-record-extra" class="small muted">RecordExtraTelemetry</label>
+                </div>
+                <div class="row" style="align-items:center; gap:10px;">
+                  <input type="checkbox" id="nobb-compress-ids" />
+                  <label for="nobb-compress-ids" class="small muted">CompressIDs</label>
+                </div>
+                <div class="row" style="align-items:center; gap:10px;">
+                  <input type="checkbox" id="nobb-heightmap-enable" />
+                  <label for="nobb-heightmap-enable" class="small muted">EnableHeightmapGenerator</label>
+                </div>
+                <div>
+                  <label class="small muted">Unit Discovery Rate</label>
+                  <input class="in" id="nobb-unit-discovery" />
+                </div>
+                <div>
+                  <label class="small muted">BulletSim Discovery Rate</label>
+                  <input class="in" id="nobb-bulletsim-discovery" />
+                </div>
+                <div>
+                  <label class="small muted">Shockwave Discovery Rate</label>
+                  <input class="in" id="nobb-shockwave-discovery" />
+                </div>
+                <div>
+                  <label class="small muted">Aircraft Update Rate</label>
+                  <input class="in" id="nobb-aircraft-update" />
+                </div>
+                <div>
+                  <label class="small muted">Vehicle Update Rate</label>
+                  <input class="in" id="nobb-vehicle-update" />
+                </div>
+                <div>
+                  <label class="small muted">Munition Update Rate</label>
+                  <input class="in" id="nobb-munition-update" />
+                </div>
+                <div>
+                  <label class="small muted">Shockwave Update Rate</label>
+                  <input class="in" id="nobb-shockwave-update" />
+                </div>
+                <div>
+                  <label class="small muted">Tracer Update Rate</label>
+                  <input class="in" id="nobb-tracer-update" />
+                </div>
+                <div>
+                  <label class="small muted">Flare Update Rate</label>
+                  <input class="in" id="nobb-flare-update" />
+                </div>
+                <div>
+                  <label class="small muted">Building Update Rate</label>
+                  <input class="in" id="nobb-building-update" />
+                </div>
+                <div>
+                  <label class="small muted">AutoSaveInterval (min 60)</label>
+                  <input class="in" id="nobb-autosave" />
+                </div>
+                <div>
+                  <label class="small muted">MetersPerScan</label>
+                  <input class="in" id="nobb-meters-per-scan" />
+                </div>
+                <div>
+                  <label class="small muted">HeightMapResolution</label>
+                  <input class="in" id="nobb-heightmap-res" />
+                </div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Discord Bot -->
+      <section class="page" id="page-discord" data-page="discord">
+        <div class="card">
+          <h2>DISCORD BOT</h2>
+          <p class="muted">Run an optional Discord bot that can control this panel. The bot runs on the machine hosting the panel.</p>
+
+          <div class="discord-indicator" title="Discord bot status">
+            <div id="discord-indicator-dot" class="dot unknown"></div>
+            <div id="discord-indicator-text" class="text">UNKNOWN</div>
+          </div>
+
+
+          <div class="grid two">
+            <div>
+              <label>Bot Token</label>
+              <input id="discord-token" type="password" placeholder="Paste bot token (stored locally)" autocomplete="off" />
+              <div class="hint">Tip: enable <b>Message Content Intent</b> in the Dev Portal if you want prefix commands.</div>
+            </div>
+            <div>
+              <label>Command Prefix</label>
+              <input id="discord-prefix" type="text" value="!" />
+              <div class="hint">Example: <code>!servers</code>, <code>!start Server1</code>, <code>!cmd Server1 status</code></div>
+            </div>
+          </div>
+
+          <div class="grid two">
+            <div>
+              <label>Allowed Role IDs (comma separated)</label>
+              <input id="discord-roles" type="text" placeholder="123,456,789" />
+              <div class="hint">Only users with one of these role IDs (or Admins) can use the bot.</div>
+            </div>
+            <div>
+              <label>Guild ID (optional)</label>
+              <input id="discord-guild" type="text" placeholder="Restrict to one server (recommended)" />
+            </div>
+          </div>
+
+          <div class="grid two">
+            <div>
+              <label>Channel ID (optional)</label>
+              <input id="discord-channel" type="text" placeholder="Restrict to one channel" />
+            </div>
+            <div>
+              <label>Panel Base URL</label>
+              <input id="discord-panel-url" type="text" value="http://127.0.0.1:5000" />
+              <div class="hint">For safety, must be localhost. The bot calls the panel internally.</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <button class="btn" id="discord-save">Save</button>
+            <button class="btn" id="discord-start">Start Bot</button>
+            <button class="btn danger" id="discord-stop">Stop Bot</button>
+          </div>
+
+          <div class="divider"></div>
+
+          <div>
+            <label>Status</label>
+            <pre class="pre" id="discord-status">Not loaded.</pre>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    window.NO_ALLOWED_PORTS = {{ allowed_ports|tojson }};
+  </script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

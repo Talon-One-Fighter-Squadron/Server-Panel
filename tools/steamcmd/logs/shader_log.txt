@@ -1,0 +1,16 @@
+
+
+[2026-02-06 19:29:41] Client version: 1769026246
+[2026-02-06 19:29:41] Shader manager disabled due to running as steamcmd
+
+
+[2026-02-06 19:29:42] Client version: 1769026246
+[2026-02-06 19:29:42] Shader manager disabled due to running as steamcmd
+
+
+[2026-02-06 19:29:51] Client version: 1769026246
+[2026-02-06 19:29:51] Shader manager disabled due to running as steamcmd
+
+
+[2026-02-06 19:29:51] Client version: 1769026246
+[2026-02-06 19:29:51] Shader manager disabled due to running as steamcmd
