@@ -1,4 +1,0 @@
-
-
-[2026-02-06 19:29:54] Client version: 1769026246
-[2026-02-06 19:29:54] Content cache info request: no local site servers
